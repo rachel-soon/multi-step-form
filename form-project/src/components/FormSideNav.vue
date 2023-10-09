@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>sdfjsd</div>
+  <div>
+    <img src="../assets/img/bg-sidebar-desktop.svg" alt="Sidebar background" />
+  </div>
 </template>
