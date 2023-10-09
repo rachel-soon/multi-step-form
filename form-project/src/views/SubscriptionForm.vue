@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useCounterStore } from '@/stores/counter'
+import { useCounterStore } from '@/stores/subscription'
 import SideNavbar from '@/components/SideNavbar/SideNavbar.vue'
 import SubscriptionFormPersonalInfo from '@/components/SubscriptionFormPersonalInfo.vue'
 import SubscriptionFormPlan from '@/components/SubscriptionFormPlan.vue'
