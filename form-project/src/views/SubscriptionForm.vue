@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, computed } from 'vue'
+import { computed } from 'vue'
 import { useCounterStore } from '@/stores/counter'
 import FormSideNav from '@/components/FormSideNav.vue'
 import SubscriptionFormPersonalInfo from '@/components/SubscriptionFormPersonalInfo.vue'
@@ -60,9 +60,16 @@ const getSubtitle = computed(() => {
   <div class="bg-white w-8/12 rounded-xl grid grid-cols-3 form-body p-5">
     <FormSideNav class="form-body__nav"></FormSideNav>
     <div class="col-span-2 form-body__form pt-8 pl-10">
-      <div class="form-body__title">{{ getTitle }}</div>
-      <div class="form-body__subtitle">{{ getSubtitle }}</div>
+      <div class="form-body__heading">
+        <div class="form-body__title">{{ getTitle }}</div>
+        <div class="form-body__subtitle">{{ getSubtitle }}</div>
+      </div>
+
       <component :is="getComponent"></component>
+      <div class="form-body__footer">
+        <div><button @click="previousStep">Go Back</button></div>
+        <div><button @click="nextStep">Next Step</button></div>
+      </div>
     </div>
     <!-- <button class="border-2" @click="nextStep">Increase step</button>
     <button class="border-2" @click="previousStep">Decrease step</button>
