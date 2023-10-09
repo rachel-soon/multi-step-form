@@ -7,6 +7,8 @@ import SubscriptionFormPlan from '@/components/SubscriptionFormPlan.vue'
 import SubscriptionFormAddOns from '@/components/SubscriptionFormAddOns.vue'
 import SubscriptionFormSummary from '@/components/SubscriptionFormSummary.vue'
 
+import BaseButton from '@/components/BaseButton.vue'
+
 // handling steps
 const subscriptionStore = useCounterStore()
 const currentStep = computed<number>(() => {
@@ -67,10 +69,20 @@ const getSubtitle = computed(() => {
 
       <component :is="getComponent"></component>
       <div class="form-body__footer">
-        <div><button v-if="currentStep !== 1" @click="previousStep">Go Back</button></div>
+        <div>
+          <span
+            v-if="currentStep !== 1"
+            @click="previousStep"
+            class="text-muted hover:cursor-pointer"
+          >
+            Go Back
+          </span>
+        </div>
         <div class="flex justify-end">
-          <button v-if="currentStep !== 4" @click="nextStep">Next Step</button>
-          <button v-else>Confirm</button>
+          <BaseButton v-if="currentStep !== 4" @click="nextStep" variant="primary"
+            >Next Step</BaseButton
+          >
+          <BaseButton v-else variant="secondary">Confirm</BaseButton>
         </div>
       </div>
     </div>
