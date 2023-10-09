@@ -72,7 +72,7 @@ const getSubtitle = computed(() => {
           <span
             v-if="currentStep !== 1"
             @click="previousStep"
-            class="text-muted hover:cursor-pointer select-none"
+            class="text-muted hover:cursor-pointer hover:text-primary font-medium select-none"
           >
             Go Back
           </span>
