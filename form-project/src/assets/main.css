@@ -10,7 +10,7 @@ body {
 }
 
 .form-body {
-  @apply bg-white w-8/12 rounded-xl grid grid-cols-3 p-5;
+  @apply bg-white w-7/12 rounded-2xl grid grid-cols-3 p-5;
 }
 
 .form-body__form {

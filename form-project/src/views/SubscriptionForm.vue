@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useCounterStore } from '@/stores/counter'
-import FormSideNav from '@/components/FormSideNav.vue'
+import SideNavbar from '@/components/SideNavbar/SideNavbar.vue'
 import SubscriptionFormPersonalInfo from '@/components/SubscriptionFormPersonalInfo.vue'
 import SubscriptionFormPlan from '@/components/SubscriptionFormPlan.vue'
 import SubscriptionFormAddOns from '@/components/SubscriptionFormAddOns.vue'
@@ -60,20 +60,19 @@ const getSubtitle = computed(() => {
 
 <template>
   <div class="form-body">
-    <FormSideNav class="form-body__nav"></FormSideNav>
-    <div class="col-span-2 form-body__form pt-8 px-10">
+    <SideNavbar class="form-body__nav"></SideNavbar>
+    <div class="col-span-2 form-body__form pt-8 pb-2 pl-12 pr-16">
       <div class="form-body__heading">
         <div class="form-body__title">{{ getTitle }}</div>
         <div class="form-body__subtitle">{{ getSubtitle }}</div>
       </div>
-
       <component :is="getComponent"></component>
       <div class="form-body__footer">
         <div>
           <span
             v-if="currentStep !== 1"
             @click="previousStep"
-            class="text-muted hover:cursor-pointer"
+            class="text-muted hover:cursor-pointer select-none"
           >
             Go Back
           </span>
