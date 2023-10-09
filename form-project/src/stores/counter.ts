@@ -1,12 +1,21 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
-  }
+export const useCounterStore = defineStore('subscriptionForm', {
+  state: () => {
+    return { step: 1 }
+  },
 
-  return { count, doubleCount, increment }
+  getters: {
+    getStep: (state) => state.step
+  },
+
+  actions: {
+    increaseStep() {
+      this.step < 4 ? this.step++ : null
+    },
+    decreaseStep() {
+      this.step > 1 ? this.step-- : null
+    }
+  }
 })
