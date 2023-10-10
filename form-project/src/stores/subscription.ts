@@ -16,7 +16,8 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
         email: '',
         phone: ''
       } as FormData,
-      errors: [] // push key-value pairs inside here
+      errors: [], // push key-value pairs inside here
+      billingType: 'monthly'
     }
   },
 

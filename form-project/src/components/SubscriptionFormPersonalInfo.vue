@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, computed } from 'vue'
+import { reactive } from 'vue'
 import { useSubscriptionStore } from '@/stores/subscription'
 import BaseInput from './Base/BaseInput.vue'
 
