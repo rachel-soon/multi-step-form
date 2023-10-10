@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
-import { useCounterStore } from '@/stores/subscription'
+import { computed } from 'vue'
+import { useSubscriptionStore } from '@/stores/subscription'
 
-const subscriptionStore = useCounterStore()
+const subscriptionStore = useSubscriptionStore()
 const currentStep = computed<number>(() => {
   return subscriptionStore.getStep
 })

@@ -1,12 +1,22 @@
 import { defineStore } from 'pinia'
 
-export const useCounterStore = defineStore('subscriptionForm', {
+export const useSubscriptionStore = defineStore('subscriptionForm', {
   state: () => {
-    return { step: 1 }
+    return {
+      step: 1,
+      form: {
+        name: '',
+        email: '',
+        phone: ''
+      }
+    }
   },
 
   getters: {
-    getStep: (state) => state.step
+    getStep: (state) => state.step,
+    getName: (state) => state.form.name,
+    getEmail: (state) => state.form.email,
+    getPhone: (state) => state.form.phone
   },
 
   actions: {
@@ -15,6 +25,7 @@ export const useCounterStore = defineStore('subscriptionForm', {
     },
     decreaseStep() {
       this.step > 1 ? this.step-- : null
-    }
+    },
+    validateForm() {}
   }
 })

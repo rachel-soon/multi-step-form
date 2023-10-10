@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useCounterStore } from '@/stores/subscription'
+import { useSubscriptionStore } from '@/stores/subscription'
 import SideNavbar from '@/components/SideNavbar/SideNavbar.vue'
 import SubscriptionFormPersonalInfo from '@/components/SubscriptionFormPersonalInfo.vue'
 import SubscriptionFormPlan from '@/components/SubscriptionFormPlan.vue'
 import SubscriptionFormAddOns from '@/components/SubscriptionFormAddOns.vue'
 import SubscriptionFormSummary from '@/components/SubscriptionFormSummary.vue'
 
-import BaseButton from '@/components/BaseButton.vue'
+import BaseButton from '@/components/Base/BaseButton.vue'
 
 // handling steps
-const subscriptionStore = useCounterStore()
+const subscriptionStore = useSubscriptionStore()
 const currentStep = computed<number>(() => {
   return subscriptionStore.getStep
 })
