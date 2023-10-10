@@ -8,7 +8,8 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
         name: '',
         email: '',
         phone: ''
-      }
+      },
+      errors: []
     }
   },
 
