@@ -66,12 +66,10 @@ const formErrors = computed<Array<Object>>(() => {
 
 function submitForm() {
   subscriptionStore.validateForm()
-  // notice the .value here. formErrors is a computed ref object 
+  // notice the .value here. formErrors is a computed ref object
   // and therefore needs the '.value' keyword
   if (formErrors.value.length === 0) {
     nextStep()
-  } else {
-    console.log('got error')
   }
 }
 </script>

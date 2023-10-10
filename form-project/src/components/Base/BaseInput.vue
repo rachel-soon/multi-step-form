@@ -16,7 +16,7 @@ const errorMsg = ref<string>('')
 const formErrors = computed(() => {
   return subscriptionStore.getErrors
 })
-watch(subscriptionStore.getErrors, () => {
+watch(formErrors.value, () => {
   hasError.value = false
   for (let error of formErrors.value) {
     if (Object.keys(error)[0] === props.field) {
