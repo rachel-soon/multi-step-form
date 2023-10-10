@@ -20,6 +20,8 @@ function nextStep(): void {
 function previousStep(): void {
   subscriptionStore.decreaseStep()
 }
+
+// dynamic rendering based on steps
 const getComponent = computed(() => {
   switch (currentStep.value) {
     case 1:
@@ -56,12 +58,28 @@ const getSubtitle = computed(() => {
       return 'Double-check everything looks OK before confirming.'
   }
 })
+
+// handling form submit
+const formErrors = computed<Array<Object>>(() => {
+  return subscriptionStore.errors
+})
+
+function submitForm() {
+  subscriptionStore.validateForm()
+  // notice the .value here. formErrors is a computed ref object 
+  // and therefore needs the '.value' keyword
+  if (formErrors.value.length === 0) {
+    nextStep()
+  } else {
+    console.log('got error')
+  }
+}
 </script>
 
 <template>
   <div class="form-body">
     <SideNavbar class="form-body__nav"></SideNavbar>
-    <div class="col-span-2 form-body__form pt-8 pb-2 pl-12 pr-16">
+    <div class="col-span-2 form-body__form pt-6 pb-2 pl-12 pr-16">
       <div class="form-body__heading">
         <div class="form-body__title">{{ getTitle }}</div>
         <div class="form-body__subtitle">{{ getSubtitle }}</div>
@@ -78,7 +96,7 @@ const getSubtitle = computed(() => {
           </span>
         </div>
         <div class="flex justify-end">
-          <BaseButton v-if="currentStep !== 4" @click="nextStep" variant="primary"
+          <BaseButton v-if="currentStep !== 4" @click="submitForm" variant="primary"
             >Next Step</BaseButton
           >
           <BaseButton v-else variant="secondary">Confirm</BaseButton>

@@ -1,5 +1,12 @@
 import { defineStore } from 'pinia'
 
+// define own data types
+type FormData = {
+  name: string
+  email: string
+  phone: string
+}
+
 export const useSubscriptionStore = defineStore('subscriptionForm', {
   state: () => {
     return {
@@ -8,8 +15,8 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
         name: '',
         email: '',
         phone: ''
-      },
-      errors: []
+      } as FormData,
+      errors: [] // push key-value pairs inside here
     }
   },
 
@@ -17,7 +24,9 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     getStep: (state) => state.step,
     getName: (state) => state.form.name,
     getEmail: (state) => state.form.email,
-    getPhone: (state) => state.form.phone
+    getPhone: (state) => state.form.phone,
+
+    getErrors: (state) => state.errors
   },
 
   actions: {
@@ -27,6 +36,13 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     decreaseStep() {
       this.step > 1 ? this.step-- : null
     },
-    validateForm() {}
+    validateForm() {
+      // personal info
+      if (this.step === 1) {
+        if (this.form.name?.trim() === '') {
+          this.errors.push({ name: 'This field is required' })
+        }
+      }
+    }
   }
 })

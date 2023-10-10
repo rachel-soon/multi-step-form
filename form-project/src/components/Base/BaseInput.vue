@@ -1,11 +1,32 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, ref, computed, watch } from 'vue'
+import { useSubscriptionStore } from '@/stores/subscription'
+const subscriptionStore = useSubscriptionStore()
+
 const props = defineProps<{
   label: string
   modelValue: string
-  errorMsg: string
-  hasError: boolean
+  field: string // for error handling
+  placeholder: string
 }>()
+
+// error handling
+const hasError = ref(false)
+const errorMsg = ref('')
+const formErrors = computed(() => {
+  return subscriptionStore.getErrors
+})
+
+watch(formErrors.value, () => {
+  for (let error of formErrors.value) {
+    if (Object.keys(error)[0] === props.field) {
+      hasError.value = true
+      errorMsg.value = Object.values(error)[0]
+    }
+  }
+})
+
+// check the store - if there is an error then set this value to true
 </script>
 
 <template>
@@ -14,7 +35,7 @@ const props = defineProps<{
       <label :for="label" class="text-sm text-primary">{{ label }}</label>
       <div
         class="text-sm text-end text-red-600 font-medium"
-        :class="hasError ? 'inline-block' : 'hidden'"
+        :class="hasError ? 'inline-block error' : 'hidden'"
       >
         {{ errorMsg }}
       </div>
@@ -27,6 +48,7 @@ const props = defineProps<{
         :name="label"
         :id="label"
         :value="modelValue"
+        :placeholder="placeholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />
     </div>
@@ -35,6 +57,7 @@ const props = defineProps<{
 
 <style scoped>
 .error {
+  transition: 0.1s all ease-in-out;
   @apply border-red-300;
 }
 </style>
