@@ -36,11 +36,21 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     decreaseStep() {
       this.step > 1 ? this.step-- : null
     },
+
     validateForm() {
+      if (this.errors.length > 0) {
+        this.errors.length = 0
+      }
       // personal info
       if (this.step === 1) {
         if (this.form.name?.trim() === '') {
           this.errors.push({ name: 'This field is required' })
+        }
+        if (this.form.email?.trim() === '') {
+          this.errors.push({ email: 'This field is required' })
+        }
+        if (this.form.phone?.trim() === '') {
+          this.errors.push({ phone: 'This field is required' })
         }
       }
     }

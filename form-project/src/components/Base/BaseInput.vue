@@ -11,22 +11,20 @@ const props = defineProps<{
 }>()
 
 // error handling
-const hasError = ref(false)
-const errorMsg = ref('')
+const hasError = ref<boolean>(false)
+const errorMsg = ref<string>('')
 const formErrors = computed(() => {
   return subscriptionStore.getErrors
 })
-
-watch(formErrors.value, () => {
+watch(subscriptionStore.getErrors, () => {
+  hasError.value = false
   for (let error of formErrors.value) {
     if (Object.keys(error)[0] === props.field) {
       hasError.value = true
-      errorMsg.value = Object.values(error)[0]
+      errorMsg.value = Object.values(error)[0] as string
     }
   }
 })
-
-// check the store - if there is an error then set this value to true
 </script>
 
 <template>
