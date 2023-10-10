@@ -38,6 +38,8 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     },
 
     validateForm() {
+      const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
+
       if (this.errors.length > 0) {
         this.errors.length = 0
       }
@@ -48,6 +50,8 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
         }
         if (this.form.email?.trim() === '') {
           this.errors.push({ email: 'This field is required' })
+        } else if (!emailRegex.test(this.form.email)) {
+          this.errors.push({ email: 'Invalid email format' })
         }
         if (this.form.phone?.trim() === '') {
           this.errors.push({ phone: 'This field is required' })
