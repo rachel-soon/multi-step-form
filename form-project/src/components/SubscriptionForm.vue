@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useSubscriptionStore } from '@/stores/subscription'
-import SideNavbar from '@/components/SideNavbar/SideNavbar.vue'
 import SubscriptionFormPersonalInfo from '@/components/SubscriptionFormPersonalInfo.vue'
 import SubscriptionFormPlan from '@/components/SubscriptionFormPlan.vue'
 import SubscriptionFormAddOns from '@/components/SubscriptionFormAddOns.vue'
@@ -75,30 +74,27 @@ function submitForm() {
 </script>
 
 <template>
-  <div class="form-body">
-    <SideNavbar class="form-body__nav"></SideNavbar>
-    <div class="col-span-2 form-body__form pt-6 pb-2 pl-12 pr-16">
-      <div class="form-body__heading">
-        <div class="form-body__title">{{ getTitle }}</div>
-        <div class="form-body__subtitle">{{ getSubtitle }}</div>
+  <div class="col-span-2 form-body__form pt-6 pb-2 pl-12 pr-16">
+    <div class="form-body__heading">
+      <div class="form-body__title">{{ getTitle }}</div>
+      <div class="form-body__subtitle">{{ getSubtitle }}</div>
+    </div>
+    <component :is="getComponent"></component>
+    <div class="form-body__footer">
+      <div class="mt-2">
+        <span
+          v-if="currentStep !== 1"
+          @click="previousStep"
+          class="text-muted hover:cursor-pointer hover:text-primary font-medium select-none"
+        >
+          Go Back
+        </span>
       </div>
-      <component :is="getComponent"></component>
-      <div class="form-body__footer">
-        <div class="mt-2">
-          <span
-            v-if="currentStep !== 1"
-            @click="previousStep"
-            class="text-muted hover:cursor-pointer hover:text-primary font-medium select-none"
-          >
-            Go Back
-          </span>
-        </div>
-        <div class="flex justify-end">
-          <BaseButton v-if="currentStep !== 4" @click="submitForm" variant="primary"
-            >Next Step</BaseButton
-          >
-          <BaseButton v-else variant="secondary">Confirm</BaseButton>
-        </div>
+      <div class="flex justify-end">
+        <BaseButton v-if="currentStep !== 4" @click="submitForm" variant="primary"
+          >Next Step</BaseButton
+        >
+        <BaseButton v-else variant="secondary" @click="nextStep">Confirm</BaseButton>
       </div>
     </div>
   </div>

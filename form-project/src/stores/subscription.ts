@@ -64,7 +64,7 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
 
   actions: {
     increaseStep() {
-      this.step < 4 ? this.step++ : null
+      this.step < 5 ? this.step++ : null
     },
     decreaseStep() {
       this.step > 1 ? this.step-- : null
