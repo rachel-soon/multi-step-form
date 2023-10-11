@@ -27,6 +27,7 @@ const plans = reactive([
 ])
 
 const subscriptionStore = useSubscriptionStore()
+const isYearlyPlan = ref(subscriptionStore.getBillingType === 'yearly')
 
 function setPlan(planName: string) {
   const selectedPlan = plans.find((plan) => plan.name === planName)
@@ -34,14 +35,17 @@ function setPlan(planName: string) {
   subscriptionStore.setPlanType(planName)
 
   if (isYearlyPlan.value === true) {
-    subscriptionStore.setBillingType('yearly')
     subscriptionStore.setPlanPrice(selectedPlan?.yearlyPrice)
   } else {
-    subscriptionStore.setBillingType('monthly')
     subscriptionStore.setPlanPrice(selectedPlan?.monthlyPrice)
   }
 }
-const isYearlyPlan = ref(false)
+
+function changeBillingType() {
+  if (subscriptionStore.getBillingType === 'yearly') {
+    subscriptionStore.setBillingType('monthly')
+  } else subscriptionStore.setBillingType('yearly')
+}
 </script>
 
 <template>
@@ -72,7 +76,12 @@ const isYearlyPlan = ref(false)
     >
       <div :class="{ 'text-primary': !isYearlyPlan }">Monthly</div>
       <label class="relative inline-flex items-center mb-2.5 cursor-pointer mt-0.5">
-        <input type="checkbox" v-model="isYearlyPlan" class="sr-only peer" />
+        <input
+          type="checkbox"
+          v-model="isYearlyPlan"
+          class="sr-only peer"
+          @change="changeBillingType"
+        />
         <div
           class="w-8 h-4 bg-primary peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[3px] after:left-[6px] after:bg-white after:border after:rounded-full after:h-2.5 after:w-2.5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"
         ></div>

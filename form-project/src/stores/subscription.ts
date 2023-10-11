@@ -21,7 +21,8 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
         planType: 'Arcade',
         billingType: 'monthly',
         planPrice: 9
-      }
+      },
+      addOns: []
     }
   },
 
@@ -32,7 +33,9 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     getPhone: (state) => state.form.phone,
     getPlanType: (state) => state.billing.planType,
     getPlanPrice: (state) => state.billing.planPrice,
+    getBillingType: (state) => state.billing.billingType,
     getBilling: (state) => state.billing,
+    getAddOns: (state) => state.addOns,
 
     getErrors: (state) => state.errors
   },
@@ -43,6 +46,9 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     },
     decreaseStep() {
       this.step > 1 ? this.step-- : null
+    },
+    setStep(value: number) {
+      this.step = value
     },
 
     validateForm() {
