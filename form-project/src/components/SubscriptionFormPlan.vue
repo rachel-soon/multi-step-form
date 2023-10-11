@@ -51,7 +51,6 @@ const isYearlyPlan = ref(false)
       :key="plan.name"
       @click="setPlan(plan.name)"
       :active="subscriptionStore.getPlanType === plan.name"
-      class="hover:cursor-pointer"
     >
       <div class="mb-10 mt-2">
         <img :src="plan.icon" :alt="plan.name" />

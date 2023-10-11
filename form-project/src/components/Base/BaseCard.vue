@@ -7,7 +7,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="card hover:border-primary" :class="{ 'selected-state': active }">
+  <div class="card hover:border-primary hover:cursor-pointer" :class="{ 'selected-state': active }">
     <slot></slot>
   </div>
 </template>
