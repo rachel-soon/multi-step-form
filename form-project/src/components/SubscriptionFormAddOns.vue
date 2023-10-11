@@ -17,7 +17,7 @@ function toggleSelected(index: number) {
       :key="addOn.title"
       :active="addOn.selected"
       class="my-4"
-      @click.native="toggleSelected(index)"
+      @click="toggleSelected(index)"
     >
       <div class="grid grid-cols-3">
         <div class="flex col-span-2">

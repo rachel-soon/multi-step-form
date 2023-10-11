@@ -17,6 +17,10 @@ const total = computed(() => {
 
   return price
 })
+
+function changePlan() {
+  store.setStep(2)
+}
 </script>
 
 <template>
@@ -25,7 +29,12 @@ const total = computed(() => {
       <div class="grid grid-cols-2">
         <div class="font-medium">
           {{ billing.planType }} ({{ billing.billingType }})
-          <div class="text-muted font-medium text-sm underline">Change</div>
+          <div
+            class="text-muted font-medium text-sm underline hover:cursor-pointer hover:text-[#817aff]"
+            @click="changePlan"
+          >
+            Change
+          </div>
         </div>
         <div class="flex justify-end content-center my-auto font-bold">
           ${{ billing.planPrice }}/{{ billing.billingType === 'monthly' ? 'mo' : 'yr' }}
