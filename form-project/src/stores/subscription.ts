@@ -32,6 +32,7 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     getPhone: (state) => state.form.phone,
     getPlanType: (state) => state.billing.planType,
     getPlanPrice: (state) => state.billing.planPrice,
+    getBilling: (state) => state.billing,
 
     getErrors: (state) => state.errors
   },
