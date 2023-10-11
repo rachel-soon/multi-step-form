@@ -10,7 +10,7 @@ module.exports = {
         muted: '#9699ab',
         'light-gray': '#d6d9e6',
         'light-blue': '#bfe2fd',
-        magnolia: '#f0f6ff'
+        magnolia: '#f0f6ff',
       }
     }
   },

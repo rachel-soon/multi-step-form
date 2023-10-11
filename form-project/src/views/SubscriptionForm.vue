@@ -84,7 +84,7 @@ function submitForm() {
       </div>
       <component :is="getComponent"></component>
       <div class="form-body__footer">
-        <div>
+        <div class="mt-2">
           <span
             v-if="currentStep !== 1"
             @click="previousStep"

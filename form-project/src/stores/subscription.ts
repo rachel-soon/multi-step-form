@@ -17,7 +17,11 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
         phone: ''
       } as FormData,
       errors: [], // push key-value pairs inside here
-      billingType: 'monthly'
+      billing: {
+        planType: 'Arcade',
+        billingType: 'monthly',
+        planPrice: 9
+      }
     }
   },
 
@@ -26,6 +30,8 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     getName: (state) => state.form.name,
     getEmail: (state) => state.form.email,
     getPhone: (state) => state.form.phone,
+    getPlanType: (state) => state.billing.planType,
+    getPlanPrice: (state) => state.billing.planPrice,
 
     getErrors: (state) => state.errors
   },
@@ -58,6 +64,16 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
           this.errors.push({ phone: 'This field is required' })
         }
       }
+    },
+
+    setBillingType(value: string) {
+      this.billing.billingType = value
+    },
+    setPlanType(value: string) {
+      this.billing.planType = value
+    },
+    setPlanPrice(value: number) {
+      this.billing.planPrice = value
     }
   }
 })
