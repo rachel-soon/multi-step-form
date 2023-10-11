@@ -22,7 +22,29 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
         billingType: 'monthly',
         planPrice: 9
       },
-      addOns: []
+      addOns: [
+        {
+          title: 'Online service',
+          description: 'Access to multiplayer games',
+          monthlyPrice: 1,
+          yearlyPrice: 10,
+          selected: false
+        },
+        {
+          title: 'Larger storage',
+          description: 'Extra 1TB of cloud storage',
+          monthlyPrice: 2,
+          yearlyPrice: 20,
+          selected: false
+        },
+        {
+          title: 'Cuztomizable profile',
+          description: 'Custom theme on your profile',
+          monthlyPrice: 2,
+          yearlyPrice: 20,
+          selected: false
+        }
+      ]
     }
   },
 
@@ -81,6 +103,9 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
     },
     setPlanPrice(value: number) {
       this.billing.planPrice = value
+    },
+    toggleAddOnSelected(value: number) {
+      this.addOns[value].selected = !this.addOns[value].selected
     }
   }
 })
