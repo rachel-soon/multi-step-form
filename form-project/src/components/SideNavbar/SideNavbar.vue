@@ -3,9 +3,9 @@ import SideNavbarStep from './SideNavbarStep.vue'
 </script>
 
 <template>
-  <div class="navbar">
-    <div class="navbar__steps p-3 pt-10">
-      <div v-for="num in 4">
+  <div class="navbar col-span-3 md:col-span-1">
+    <div class="navbar__steps p-3 pt-10 flex md:flex-col justify-center">
+      <div v-for="num in 4" :key="num">
         <SideNavbarStep class="mb-8" :step-num="num"></SideNavbarStep>
       </div>
     </div>
@@ -19,5 +19,13 @@ import SideNavbarStep from './SideNavbarStep.vue'
   background-size: contain;
   background-repeat: no-repeat;
   height: 500px;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    background-image: url('@/assets/img/bg-sidebar-mobile.svg');
+    background-size: cover;
+    height: auto;
+  }
 }
 </style>

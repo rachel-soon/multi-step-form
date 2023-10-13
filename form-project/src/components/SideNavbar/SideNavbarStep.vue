@@ -37,7 +37,7 @@ const getStepTitle = computed(() => {
         {{ stepNum }}
       </span>
     </div>
-    <div class="flex flex-col text-white">
+    <div class="md:flex flex-col text-white hidden">
       <div class="uppercase text-xs text-light-gray">Step {{ stepNum }}</div>
       <div class="uppercase -mt-1 font-medium tracking-wider text-sm">{{ getStepTitle }}</div>
     </div>
