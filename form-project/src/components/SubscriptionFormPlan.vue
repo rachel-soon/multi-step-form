@@ -56,7 +56,7 @@ function changeBillingType() {
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-4">
+  <div class="grid grid-cols-3 md:col-span-1 gap-4">
     <BaseCard
       v-for="plan in plans"
       :key="plan.name"

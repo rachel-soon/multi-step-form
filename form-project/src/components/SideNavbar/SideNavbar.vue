@@ -21,7 +21,7 @@ import SideNavbarStep from './SideNavbarStep.vue'
   height: 500px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .navbar {
     background-image: url('@/assets/img/bg-sidebar-mobile.svg');
     background-size: cover;
