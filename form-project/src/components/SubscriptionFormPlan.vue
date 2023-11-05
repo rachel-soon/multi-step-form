@@ -56,30 +56,35 @@ function changeBillingType() {
 </script>
 
 <template>
-  <div class="grid grid-cols-3 md:col-span-1 gap-4">
-    <BaseCard
-      v-for="plan in plans"
-      :key="plan.name"
-      @click="setPlan(plan.name)"
-      :active="subscriptionStore.getPlanType === plan.name"
-    >
-      <div class="mb-10 mt-2">
-        <img :src="plan.icon" :alt="plan.name" />
-      </div>
-      <div class="plan__title">{{ plan.name }}</div>
-      <div class="plan__price text-muted text-sm">
-        ${{ isYearlyPlan ? plan.yearlyPrice : plan.monthlyPrice }}/
-        {{ isYearlyPlan ? 'yr' : 'mo' }}
-        <div
-          class="text-primary text-xs mt-1.5 font-medium"
-          :class="isYearlyPlan ? 'block' : 'hidden'"
-        >
-          2 months free
+  <div>
+    <div class="grid grid-cols-3 gap-4">
+      <BaseCard
+        v-for="plan in plans"
+        :key="plan.name"
+        @click="setPlan(plan.name)"
+        :active="subscriptionStore.getPlanType === plan.name"
+        class="md:col-span-1 col-span-3 flex md:flex-col flex-row items-center md:items-start md:p-4"
+      >
+        <div class="mb-10 mt-2 my-auto relative top-4 left-3 md:top-0 md:left-0">
+          <img :src="plan.icon" :alt="plan.name" />
         </div>
-      </div>
-    </BaseCard>
+        <div class="ml-8 md:ml-0">
+          <div class="plan__title">{{ plan.name }}</div>
+          <div class="plan__price text-muted text-sm">
+            ${{ isYearlyPlan ? plan.yearlyPrice : plan.monthlyPrice }}/
+            {{ isYearlyPlan ? 'yr' : 'mo' }}
+            <div
+              class="text-primary text-xs mt-1.5 font-medium"
+              :class="isYearlyPlan ? 'block' : 'hidden'"
+            >
+              2 months free
+            </div>
+          </div>
+        </div>
+      </BaseCard>
+    </div>
     <div
-      class="flex justify-center col-span-3 bg-magnolia w-full mt-2 rounded-md p-3 gap-4 text-sm font-medium text-muted"
+      class="flex justify-center col-span-3 bg-magnolia w-full my-5 rounded-md p-3 gap-4 text-sm font-medium text-muted"
     >
       <div :class="{ 'text-primary': !isYearlyPlan }">Monthly</div>
       <label class="relative inline-flex items-center mb-2.5 cursor-pointer mt-0.5">

@@ -57,10 +57,10 @@ const getSubtitle = computed(() => {
 </script>
 
 <template>
-  <div class="col-span-2 form-body__form pt-6 pb-2 pl-12 pr-16 left-3">
+  <div class="col-span-2 form-body__form pt-6 pb-2 pl-12 pr-16 left-3 m-auto">
     <div class="form-body__heading">
       <div class="form-body__title">{{ getTitle }}</div>
-      <div class="form-body__subtitle">{{ getSubtitle }}</div>
+      <div class="form-body__subtitle mb-4">{{ getSubtitle }}</div>
     </div>
     <component :is="getComponent"></component>
     <BaseBottomMenu class="invisible md:visible"></BaseBottomMenu>

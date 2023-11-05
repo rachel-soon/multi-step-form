@@ -14,7 +14,7 @@ const props = defineProps<{
 
 <style scoped>
 .card {
-  @apply border bg-white rounded-lg p-4;
+  @apply border bg-white rounded-lg;
   transition: 0.1s all ease-in;
 }
 
