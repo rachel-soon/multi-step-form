@@ -6,6 +6,7 @@ type FormData = {
   email: string
   phone: string
 }
+type ErrorObject = { [key: string]: string }
 
 export const useSubscriptionStore = defineStore('subscriptionForm', {
   state: () => {
@@ -16,7 +17,7 @@ export const useSubscriptionStore = defineStore('subscriptionForm', {
         email: '',
         phone: ''
       } as FormData,
-      errors: [], // push key-value pairs inside here
+      errors: [] as ErrorObject[], // push key-value pairs inside here
       billing: {
         planType: 'Arcade',
         billingType: 'monthly',

@@ -32,25 +32,28 @@ const plan = ref(subscriptionStore.getPlanType)
 function setPlan(planName: string) {
   const selectedPlan = plans.find((plan) => plan.name === planName)
 
-  subscriptionStore.setPlanType(planName)
-  plan.value = planName
+  if (selectedPlan) {
+    subscriptionStore.setPlanType(planName)
+    plan.value = planName
 
-  if (isYearlyPlan.value === true) {
-    subscriptionStore.setPlanPrice(selectedPlan?.yearlyPrice)
-  } else {
-    subscriptionStore.setPlanPrice(selectedPlan?.monthlyPrice)
+    if (isYearlyPlan.value === true) {
+      subscriptionStore.setPlanPrice(selectedPlan.yearlyPrice)
+    } else {
+      subscriptionStore.setPlanPrice(selectedPlan.monthlyPrice)
+    }
   }
 }
 
 function changeBillingType() {
   const selectedPlan = plans.find((item) => item.name === plan.value)
-
-  if (subscriptionStore.getBillingType === 'yearly') {
-    subscriptionStore.setBillingType('monthly')
-    subscriptionStore.setPlanPrice(selectedPlan?.monthlyPrice)
-  } else {
-    subscriptionStore.setBillingType('yearly')
-    subscriptionStore.setPlanPrice(selectedPlan?.yearlyPrice)
+  if (selectedPlan) {
+    if (subscriptionStore.getBillingType === 'yearly') {
+      subscriptionStore.setBillingType('monthly')
+      subscriptionStore.setPlanPrice(selectedPlan?.monthlyPrice)
+    } else {
+      subscriptionStore.setBillingType('yearly')
+      subscriptionStore.setPlanPrice(selectedPlan?.yearlyPrice)
+    }
   }
 }
 </script>

@@ -17,18 +17,26 @@ const currentStep = computed<number>(() => {
 
 // dynamic rendering based on steps
 const getComponent = computed(() => {
+  let dynamicComponent: any // Use 'any' for flexibility
   switch (currentStep.value) {
     case 1:
-      return SubscriptionFormPersonalInfo
+      dynamicComponent = SubscriptionFormPersonalInfo
+      break
     case 2:
-      return SubscriptionFormPlan
+      dynamicComponent = SubscriptionFormPlan
+      break
     case 3:
-      return SubscriptionFormAddOns
+      dynamicComponent = SubscriptionFormAddOns
+      break
     case 4:
-      return SubscriptionFormSummary
+      dynamicComponent = SubscriptionFormSummary
+      break
+    // Add more cases as needed for other components
     case 5:
-      return ThankYou
+      dynamicComponent = ThankYou
+      break
   }
+  return dynamicComponent
 })
 const getTitle = computed(() => {
   switch (currentStep.value) {
