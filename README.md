@@ -30,9 +30,7 @@ Users should be able to:
   - A step is submitted, but no selection has been made
 
 ### Screenshot
-
-![![image](https://github.com/rachel-soon/multi-step-form/assets/132539851/3ba62e13-0618-41c9-8cd9-70aa37f50156)
-](./screenshot.jpg)
+![Screenshot 2023-11-05 190957](https://github.com/rachel-soon/multi-step-form/assets/132539851/baac9caa-dfb0-4c16-8c38-fc5825343433)
 
 ### Links
 
