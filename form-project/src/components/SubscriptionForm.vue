@@ -6,15 +6,14 @@ import SubscriptionFormPlan from '@/components/SubscriptionFormPlan.vue'
 import SubscriptionFormAddOns from '@/components/SubscriptionFormAddOns.vue'
 import SubscriptionFormSummary from '@/components/SubscriptionFormSummary.vue'
 
-// import BaseButton from '@/components/Base/BaseButton.vue'
 import BaseBottomMenu from './Base/BaseBottomMenu.vue'
+import ThankYou from '@/components/ThankYou.vue'
 
 // handling steps
 const subscriptionStore = useSubscriptionStore()
 const currentStep = computed<number>(() => {
   return subscriptionStore.getStep
 })
-
 
 // dynamic rendering based on steps
 const getComponent = computed(() => {
@@ -27,6 +26,8 @@ const getComponent = computed(() => {
       return SubscriptionFormAddOns
     case 4:
       return SubscriptionFormSummary
+    case 5:
+      return ThankYou
   }
 })
 const getTitle = computed(() => {
@@ -53,16 +54,15 @@ const getSubtitle = computed(() => {
       return 'Double-check everything looks OK before confirming.'
   }
 })
-
 </script>
 
 <template>
-  <div class="col-span-2 form-body__form pt-6 pb-2 pl-12 pr-16 left-3 m-auto">
+  <div class="col-span-2 form-body__form pt-6 pb-2 md:pl-12 md:pr-16 px-10 m-auto">
     <div class="form-body__heading">
       <div class="form-body__title">{{ getTitle }}</div>
       <div class="form-body__subtitle mb-4">{{ getSubtitle }}</div>
     </div>
     <component :is="getComponent"></component>
-    <BaseBottomMenu class="invisible md:visible"></BaseBottomMenu>
+    <BaseBottomMenu v-if="currentStep !== 5" class="invisible md:visible"></BaseBottomMenu>
   </div>
 </template>

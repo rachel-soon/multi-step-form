@@ -57,7 +57,7 @@ function changeBillingType() {
 
 <template>
   <div>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-3 md:gap-4 gap-3 mb-3 m-auto">
       <BaseCard
         v-for="plan in plans"
         :key="plan.name"
@@ -84,7 +84,7 @@ function changeBillingType() {
       </BaseCard>
     </div>
     <div
-      class="flex justify-center col-span-3 bg-magnolia w-full my-5 rounded-md p-3 gap-4 text-sm font-medium text-muted"
+      class="flex justify-center col-span-3 bg-magnolia w-full rounded-md p-3 gap-4 text-sm font-medium text-muted md:mb-3 relative top-4 md:static md:top-0"
     >
       <div :class="{ 'text-primary': !isYearlyPlan }">Monthly</div>
       <label class="relative inline-flex items-center mb-2.5 cursor-pointer mt-0.5">

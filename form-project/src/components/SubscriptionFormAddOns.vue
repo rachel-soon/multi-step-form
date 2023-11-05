@@ -16,7 +16,7 @@ function toggleSelected(index: number) {
       v-for="(addOn, index) in addOns"
       :key="addOn.title"
       :active="addOn.selected"
-      class="my-4"
+      class="my-4 p-1 pr-3 md:p-4"
       @click="toggleSelected(index)"
     >
       <div class="grid grid-cols-3">

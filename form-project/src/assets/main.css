@@ -14,7 +14,7 @@ body {
 }
 
 .form-body__form {
-  @apply flex flex-col justify-between content-between relative -top-32 z-10 bg-white rounded-lg md:top-0;
+  @apply flex flex-col col-span-3 mx-4 md:col-span-2 justify-center content-between relative -top-28 z-10 bg-white rounded-lg md:top-0;
 }
 
 .form-body__title {
