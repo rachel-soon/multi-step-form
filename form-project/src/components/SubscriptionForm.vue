@@ -6,19 +6,15 @@ import SubscriptionFormPlan from '@/components/SubscriptionFormPlan.vue'
 import SubscriptionFormAddOns from '@/components/SubscriptionFormAddOns.vue'
 import SubscriptionFormSummary from '@/components/SubscriptionFormSummary.vue'
 
-import BaseButton from '@/components/Base/BaseButton.vue'
+// import BaseButton from '@/components/Base/BaseButton.vue'
+import BaseBottomMenu from './Base/BaseBottomMenu.vue'
 
 // handling steps
 const subscriptionStore = useSubscriptionStore()
 const currentStep = computed<number>(() => {
   return subscriptionStore.getStep
 })
-function nextStep(): void {
-  subscriptionStore.increaseStep()
-}
-function previousStep(): void {
-  subscriptionStore.decreaseStep()
-}
+
 
 // dynamic rendering based on steps
 const getComponent = computed(() => {
@@ -58,44 +54,15 @@ const getSubtitle = computed(() => {
   }
 })
 
-// handling form submit
-const formErrors = computed<Array<Object>>(() => {
-  return subscriptionStore.errors
-})
-
-function submitForm() {
-  subscriptionStore.validateForm()
-  // notice the .value here. formErrors is a computed ref object
-  // and therefore needs the '.value' keyword
-  if (formErrors.value.length === 0) {
-    nextStep()
-  }
-}
 </script>
 
 <template>
-  <div class="col-span-2 form-body__form pt-6 pb-2 pl-12 pr-16">
+  <div class="col-span-2 form-body__form pt-6 pb-2 pl-12 pr-16 left-3">
     <div class="form-body__heading">
       <div class="form-body__title">{{ getTitle }}</div>
       <div class="form-body__subtitle">{{ getSubtitle }}</div>
     </div>
     <component :is="getComponent"></component>
-    <div class="form-body__footer">
-      <div class="mt-2">
-        <span
-          v-if="currentStep !== 1"
-          @click="previousStep"
-          class="text-muted hover:cursor-pointer hover:text-primary font-medium select-none"
-        >
-          Go Back
-        </span>
-      </div>
-      <div class="flex justify-end">
-        <BaseButton v-if="currentStep !== 4" @click="submitForm" variant="primary"
-          >Next Step</BaseButton
-        >
-        <BaseButton v-else variant="secondary" @click="nextStep">Confirm</BaseButton>
-      </div>
-    </div>
+    <BaseBottomMenu class="invisible md:visible"></BaseBottomMenu>
   </div>
 </template>

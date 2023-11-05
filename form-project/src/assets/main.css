@@ -10,11 +10,11 @@ body {
 }
 
 .form-body {
-  @apply bg-white md:w-7/12 rounded-2xl grid md:grid-cols-3 md:p-5 pb-5;
+  @apply bg-magnolia md:bg-white md:w-7/12 rounded-2xl grid md:grid-cols-3 md:p-5 pb-5;
 }
 
 .form-body__form {
-  @apply flex flex-col justify-between content-between;
+  @apply flex flex-col justify-between content-between relative -top-32 z-10 bg-white rounded-lg md:top-0;
 }
 
 .form-body__title {
