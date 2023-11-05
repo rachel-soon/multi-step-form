@@ -11,6 +11,9 @@ const store = useSubscriptionStore()
   <div class="form-body">
     <SideNavbar class="form-body__nav"></SideNavbar>
     <SubscriptionForm v-if="store.getStep !== 6"></SubscriptionForm>
-    <BaseBottomMenu class="block md:hidden absolute bottom-0 p-4 px-5"></BaseBottomMenu>
+    <BaseBottomMenu
+      v-if="store.getStep !== 5"
+      class="block md:hidden absolute bottom-0 p-4 px-5"
+    ></BaseBottomMenu>
   </div>
 </template>
